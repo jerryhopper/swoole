@@ -49,19 +49,18 @@ jobs:
       - name: Clone docker-swoole
         shell: bash
         run: |
-          git clone https://github.com/swoole/docker-swoole.git
+          git clone https://github.com/swoole/docker-swoole.git .
       - name: Patch 'src/Dockerfile.php'
         shell: bash
         run: |
-          sed -i 's/arm64v8\/php/php/g' docker-swoole/src/Dockerfile.php
-          cat docker-swoole/src/Dockerfile.php
+          sed -i 's/arm64v8\/php/php/g' src/Dockerfile.php
+          cat src/Dockerfile.php
       - name: Build image
         shell: bash
         run: |
           SWOOLE_VERSION=4.5.9
           PHP_VERSION=7.1
           echo $PWD
-          cd docker-swoole
           ls -latr       
           ./bin/generate-dockerfiles.php $SWOOLE_VERSION  
           export DOCKER_CLI_EXPERIMENTAL=enabled && docker build -t jerryhopper/swoole:$SWOOLE_VERSION-php$PHP_VERSION --platform linux/arm/v7,linux/arm64,linux/amd64 --no-cache -f dockerfiles/$SWOOLE_VERSION/arm64v8/php$PHP_VERSION/Dockerfile --push .
