@@ -44,7 +44,7 @@ jobs:
           echo "DOCKER_CLI_EXPERIMENTAL=enabled">> $GITHUB_ENV
           set DOCKER_CLI_EXPERIMENTAL=enabled
           export DOCKER_CLI_EXPERIMENTAL=enabled
-          systemctl restart docker
+          sudo systemctl restart docker
 
       - name: Clone docker-swoole
         shell: bash
