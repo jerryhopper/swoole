@@ -29,6 +29,8 @@ jobs:
             ca-certificates \
             curl \
             jq \
+            composer \
+            php-cli \
             gnupg-agent \
             software-properties-common
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -55,10 +57,12 @@ jobs:
         run: |
           sed -i 's/arm64v8\/php/php/g' docker-swoole/src/Dockerfile.php
           cat docker-swoole/src/Dockerfile.php
+          
       - name: Build image
         shell: bash
         run: |
           cd docker-swoole
+          composer install
           SWOOLE_VERSION=4.5.9
           PHP_VERSION=7.1
           echo $PWD
