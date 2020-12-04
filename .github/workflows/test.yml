@@ -29,6 +29,8 @@ jobs:
             ca-certificates \
             curl \
             jq \
+            qemu \
+            binfmt-support \
             qemu-user-static \
             composer \
             php-cli \
