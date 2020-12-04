@@ -61,7 +61,8 @@ jobs:
       - name: Build image
         shell: bash
         run: |
-          bash ./check-qemu-binfmt.sh
+          sudo bash ./check-qemu-binfmt.sh
+          sudo bash reregister-qemu-binfmt.sh
           cd docker-swoole
           composer install
           SWOOLE_VERSION=4.5.9
