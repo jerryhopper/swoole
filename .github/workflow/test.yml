@@ -48,5 +48,3 @@ jobs:
           sed -i 's/arm64v8\/php/php/g' docker-swoole/src/Dockerfile.php
           cat docker-swoole/src/Dockerfile.php
 
-
-
